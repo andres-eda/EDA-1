@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Declaración de funciones 
+int  Registro_Num_Al();
+void Print_cal(float cal_gen, int n_2);
+void Print_cal_2(float cal_gen_2, int n_4);
+void Registro_Prom_Al(int n);
+void Verif_malloc(float *comprobacion); 
+void Verif_realloc(float **comprobacion_1);
+void Redefinicion_Arreglo();
+
+//Declaración global
+int Num_al=0;
+float *calificaciones_Alumnos=NULL; 
+
+int main ()
+{
+    //Declaración de variables locales 
+  
+    int opcion=0;
+    
+    //Comienzo del algoritmo 
+    printf("#####Bienvenido al sistema de registro de calificaciones#####\n");
+    printf("%cCu%cntos estudiantes se requieren registrar?\n",168, 160); //Uso de codigo ASCII
+    Num_al=Registro_Num_Al();//Guardo los datos de la funcion en la variable Num_al
+    Registro_Prom_Al(Num_al); //Registra las calificaciones de los alumnos uno por uno y obtiene el promedio 
+    do 
+    {
+        do 
+        {
+            printf("%cDesea ingresar mas calificaciones de estudiantes?\n",168);
+            printf("Presione  1, si desea agregar mas alumnos\n");
+            printf("Presione  2, si desea salir del programa\n");
+            scanf("%d", &opcion);
+            if (opcion!=1 && opcion!=2)
+            {
+                printf("El valor ingresado no se encuentra en los valores permitidos\n");
+                printf("Vuelva a ingresar su valor\n");
+            }
+        } while (opcion!=1 && opcion!=2);
+        
+
+        switch (opcion)//Seleccionador que permite preguntar al usuario si desa sseguir añadiendo calificaciones 
+        {
+            case 1: 
+            Redefinicion_Arreglo(); //redimensiona el arreglo con arreglo
+            break; 
+
+            case 2: 
+            printf("Terminando ejecucion del programa");
+            break; 
+        }
+
+    }while (opcion!=2);
+    free(calificaciones_Alumnos);//Se libera la memoria del arreglo 
+    
+    return 0; 
+}
